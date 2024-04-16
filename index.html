@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobile Calculator</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<video autoplay muted loop id="video-background">
+  <source src="video/video.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<div class="calculator">
+  <div id="display" class="display">0</div>
+  <div class="buttons">
+    <button class="clear" onclick="clearDisplay()">CLEAR</button>
+    <button onclick="appendToDisplay('7')">7</button>
+    <button onclick="appendToDisplay('8')">8</button>
+    <button onclick="appendToDisplay('9')">9</button>
+    <button class="operator" onclick="appendToDisplay('/')">÷</button>
+    <button onclick="appendToDisplay('4')">4</button>
+    <button onclick="appendToDisplay('5')">5</button>
+    <button onclick="appendToDisplay('6')">6</button>
+    <button class="operator" onclick="appendToDisplay('*')">x</button>
+    <button onclick="appendToDisplay('1')">1</button>
+    <button onclick="appendToDisplay('2')">2</button>
+    <button onclick="appendToDisplay('3')">3</button>
+    <button class="operator" onclick="appendToDisplay('-')">-</button>
+    <button onclick="appendToDisplay('0')">0</button>
+    <button onclick="appendToDisplay('.')">.</button>
+    <button class="equal" onclick="calculate()">=</button>
+    <button class="operator" onclick="appendToDisplay('+')">+</button>
+  </div>
+</div>
+
+<script>
+    let displayValue = "0";
+
+function appendToDisplay(value) {
+  if (displayValue === "0" && value !== ".") {
+    displayValue = value;
+  } else {
+    displayValue += value;
+  }
+  document.getElementById("display").innerText = displayValue;
+}
+
+function clearDisplay() {
+  displayValue = "0";
+  document.getElementById("display").innerText = displayValue;
+}
+
+function calculate() {
+  try {
+    displayValue = eval(displayValue).toString();
+    document.getElementById("display").innerText = displayValue;
+  } catch (error) {
+    displayValue = "Error";
+    document.getElementById("display").innerText = displayValue;
+  }
+}
+</script>
+</body>
+</html>
